@@ -1,4 +1,6 @@
-
+<!-- TODOS -->
+Set up backend for this
+Change API calls from wd app
   
 
 <p  align="center"><img  src="./favicon.png"  width=100  height=100>

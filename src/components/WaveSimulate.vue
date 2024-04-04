@@ -172,6 +172,7 @@ export default {
     let controls, water, sun;
     let clock, delta, boxes, numBoxes;
     let waves;
+    let isLand;
     if (localStorage.getItem("waves")) {
       waves = JSON.parse(localStorage.getItem("waves"));
     } else {
@@ -181,6 +182,15 @@ export default {
         C: { direction: 90, steepness: 0.4, wavelength: 15 },
       };
     }
+    const hasZeroDirection = Object.keys(waves).some(key => waves[key].direction === "0.00");
+    if (hasZeroDirection) {
+      isLand = true;
+      console.log("Direction is 0.00 in at least one key.");
+    } else {
+      isLand = false;
+      console.log("Direction is not 0.00 in any key.");
+    }
+
     const loader = new GLTFLoader();
 
     class Boat {
@@ -199,9 +209,9 @@ export default {
         });
       }
     }
-
-    const boat = new Boat();
-
+    if(!isLand) {
+      const boat = new Boat();
+    }
     class Whale {
       constructor() {
         loader.load("assets/whale/whale.gltf", (gltf) => {
@@ -218,8 +228,9 @@ export default {
         });
       }
     }
-
+    if(!isLand) {
     const whale = new Whale();
+    }
 
     function getWaveInfo(x, z, time) {
       const pos = new THREE.Vector3();

@@ -118,7 +118,7 @@ export default {
         setTimeout(() => {
           const date = new Date();
           const dateString = date.toISOString().slice(0, 10) + 'T00:00:00Z';
-          axios.get(`http://localhost:4000/waves/getData?data=${dateString}&latitude=${this.lat}&longitude=${this.lng}`)
+          axios.get(`https://lbs7jpvwwf.execute-api.us-east-2.amazonaws.com/prodap02/ap02?date=${dateString}&latitude=${this.lat}&longitude=${this.lng}`)
             .then(response => {
               console.log(response.data, "check");
               let waveData = {
